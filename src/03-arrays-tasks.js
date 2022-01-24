@@ -420,8 +420,16 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country < b.country) return -1;
+    if (a.country > b.country) return 1;
+    if (a.country === b.country) {
+      if (a.city < b.city) return -1;
+      if (a.city < b.city) return 1;
+    }
+    return 0;
+  });
 }
 
 /**
@@ -442,8 +450,9 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
+
 function getIdentityMatrix(/* n */) {
-  // return Array(n).fill(Array(n)).map((el, index) => index === el[index] ? 1 : 0);
+  // return new Array(n).fill(Array(n)).map((el, index) => index === el[index] ? 1 : 0);
   throw new Error('Not implemented');
 }
 
@@ -460,10 +469,9 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
-  // const index = Math.abs(end - start);
-  // return Array(index).map((el, i) => start + i);
+function getIntervalArray(start, end) {
+  const index = Math.abs(start - end) + 1;
+  return [...new Array(index)].map((el, i) => start + i);
 }
 
 /**
@@ -529,8 +537,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.map((el) => childrenSelector(el)).flat();
 }
 
 
